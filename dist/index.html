@@ -32,6 +32,7 @@
 							<input type="text" id="newQuery" class="form-control input-lg" placeholder="Text input">
 							<button class="btn btn-danger btn-lg" type="submit">Submit</button>
 						</form>
+						<div id="new-search"></div>
 				</section>
 			</div>
 		</div>
@@ -46,6 +47,16 @@
 			</div>
 		</div>
 	</div>
+
+	<script type="text/template" id="movie-row">
+			<div class="movie-row">
+				<div><%= Title %></div>
+				<div><%= Year %></div>
+				<div><%= imdbID %></div>
+				<div><%= Type %></div>
+			</div>
+	</script>
+
 	</main>
 </body>
 <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>

@@ -1,4 +1,9 @@
 $(document).ready(function() {
+	
+
+	var rowString = $('#movie-row').html();
+	var buildResultRow = _.template(rowString);
+
 	var App = Backbone.Router.extend({
 		routes: {
 			'': 'home',
@@ -32,10 +37,11 @@ $(document).ready(function() {
 				console.log(onReceivedMovies);
 				console.log(movies);
 				console.log(movies.Search[0].Title);
-			
+				var newReceived = movies.Search;
 				for(var i=0;i<movies.Search.length;i++) {
-					var $movieSearch = $('<div>'+movies.Search[i].Title+'</div>');
-					watchList.push($movieSearch);
+					var movie = newReceived[i];
+					var row = buildResultRow(movie);
+					$('#new-search').append(row);
 					console.log(watchList);
 				}
 
@@ -86,6 +92,7 @@ $(document).ready(function() {
 						for(var i=0; i<watchList.length; i++) {
 							watchList[i].on('click', function(e) {
 							moviesToWatch.push($(this));
+							var row = buildResultRow(movie);
 							$('#watch-list').append(moviesToWatch);
 							});
 							console.log(moviesToWatch);
@@ -106,16 +113,12 @@ $(document).ready(function() {
 		var query = $('#query').val();
 		var movieSelection = '';
 		myRouter.navigate('search/'+query, {trigger: true});
-		var watchList = [];
-		var moviesToWatch = [];	
 	});
 
 	$('#new-search-form').on('submit', function(e) {
 		e.preventDefault();
 		var query = $('#newQuery').val();
 		var movieSelection = '';
-		myRouter.navigate('search/new/'+query, {trigger: true});
-		var watchList = [];
-		var moviesToWatch = [];	
+		myRouter.navigate('search/new/'+query, {trigger: true});	
 	});
 });
