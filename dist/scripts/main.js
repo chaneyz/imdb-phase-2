@@ -25,6 +25,9 @@ $(document).ready(function() {
 				'json'
 			);
 
+			var watchList = [];
+			var moviesToWatch = [];
+
 			function onReceivedMovies(movies) {
 				console.log(onReceivedMovies);
 				console.log(movies);
@@ -36,18 +39,18 @@ $(document).ready(function() {
 					console.log(watchList);
 				}
 
-				// $('#search').append(watchList);
-				// 	for(var i=0; i<watchList.length; i++) {
-				// 		watchList[i].on('click', function(e) {
-				// 		moviesToWatch.push($(this));
-				// 		$('#watch-list').append(moviesToWatch);
-				// 		});
-				// 		console.log(moviesToWatch);
+				$('#search').append(watchList);
+					for(var i=0; i<watchList.length; i++) {
+						watchList[i].on('click', function(e) {
+						moviesToWatch.push($(this));
+						$('#watch-list').append(moviesToWatch);
+						});
+						console.log(moviesToWatch);
 
-				// 	$('div #watch-list').click(function(e) {
-				// 		$(e.target).fadeOut('slow');
-				// 	})
-				// }
+					$('div #watch-list').click(function(e) {
+						$(e.target).fadeOut('slow');
+					})
+				}
 			};
 		},
 
@@ -63,30 +66,34 @@ $(document).ready(function() {
 				onReceivedMovies,
 				'json'
 			);
+			
+			var watchList = [];
+			var moviesToWatch = [];
 
 			function onReceivedMovies(movies) {
-				console.log(onReceivedMovies);
-				console.log(movies);
-				console.log(movies.Search[0].Title);
-			
-				for(var i=0;i<movies.Search.length;i++) {
-					var $movieSearch = $('<div>'+movies.Search[i].Title+'</div>');
-					watchList.push($movieSearch);
-					console.log(watchList);
+					console.log(onReceivedMovies);
+					console.log(movies);
+					console.log(movies.Search[0].Title);
+					$('#search div').html('');
+				
+					for(var i=0;i<movies.Search.length;i++) {
+						var $movieSearch = $('<div>'+movies.Search[i].Title+'</div>');
+						watchList.push($movieSearch);
+						console.log(watchList);
+					}
+
+					$('#search').append(watchList);
+						for(var i=0; i<watchList.length; i++) {
+							watchList[i].on('click', function(e) {
+							moviesToWatch.push($(this));
+							$('#watch-list').append(moviesToWatch);
+							});
+							console.log(moviesToWatch);
+
+						$('div #watch-list').click(function(e) {
+							$(e.target).fadeOut('slow');
+					})
 				}
-
-				// $('#search').append(watchList);
-				// 	for(var i=0; i<watchList.length; i++) {
-				// 		watchList[i].on('click', function(e) {
-				// 		moviesToWatch.push($(this));
-				// 		$('#watch-list').append(moviesToWatch);
-				// 		});
-				// 		console.log(moviesToWatch);
-
-				// 	$('div #watch-list').click(function(e) {
-				// 		$(e.target).fadeOut('slow');
-				// 	})
-				// }
 			};
 		}
 	});
@@ -103,52 +110,12 @@ $(document).ready(function() {
 		var moviesToWatch = [];	
 	});
 
-	// $('#new-search-form').on('submit', function(e) {
-	// 	e.preventDefault();
-	// 	var query = $('#newQuery').val();
-	// 	var movieSelection = '';
-
-	// 	myRouter.navigate('search/new/'+query, {trigger: true});
-
+	$('#new-search-form').on('submit', function(e) {
+		e.preventDefault();
+		var query = $('#newQuery').val();
+		var movieSelection = '';
+		myRouter.navigate('search/new/'+query, {trigger: true});
 		var watchList = [];
-		var moviesToWatch = [];
-
-
-	// 	function onReceivedMovies(movies) {
-	// 		console.log(onReceivedMovies);
-	// 		console.log(movies);
-	// 		console.log(movies.Search[0].Title);
-	// 		$('#search div').html('');
-		
-	// 		for(var i=0;i<movies.Search.length;i++) {
-	// 			var $movieSearch = $('<div>'+movies.Search[i].Title+'</div>');
-	// 			watchList.push($movieSearch);
-	// 		}
-
-	// 		$('#search').append(watchList);
-
-	// 		for(var i=0; i<watchList.length; i++) {
-	// 			$('#watch-list').append('');
-	// 			watchList[i].on('click', function(e) {
-	// 			moviesToWatch.push($(this));
-	// 			$('#watch-list').append(moviesToWatch);
-	// 			});
-
-	// 		//trying to add fadeout
-	// 		$('div #watch-list').click(function(e) {
-	// 			$(e.target).fadeOut('slow');
-	// 		})
-	// 		}
-	// 	};
-
-	// 	$.get(
-	// 		'http://www.omdbapi.com',
-	// 		{
-	// 			s: query,
-	// 			type: 'movie'
-	// 		},
-	// 		onReceivedMovies,
-	// 		'json'
-	// 	);
-	// });
+		var moviesToWatch = [];	
+	});
 });
